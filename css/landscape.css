@@ -1,0 +1,30 @@
+#result_content {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .75);
+    display: none;
+    z-index: 22;
+    text-align: center
+}
+#group {
+    height: 250px;
+    width: 220px;
+    position: absolute;
+}
+#group img{
+    padding:8px;
+    width:230px;
+    height:210px;
+    background:#fff;
+}
+#group .result_tips img {
+    height: 20px;
+    width:20px;
+    padding:0;
+    background:none;
+    vertical-align: bottom;
+}
+.resultbtn{width:250px;}
+.resultbtn p,.resultbtn div{display:inline;}

@@ -1,0 +1,13 @@
+{
+	"index.html": {
+		"resources": [
+			"js/jquery.min.js",
+			"js/qrcode.js",
+			"css/font-awesome.min.css",
+			"css/style.css",
+			"img/close_03.png",
+			"fonts/fontawesome-webfont.woff",
+			"css/landscape.css"
+		]
+	}
+}
