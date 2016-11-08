@@ -1,85 +1,149 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-		<meta charset="gb2312">
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="Cache-Control" content="no-cache">
-		<meta http-equiv="Expires" content="0">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<title>北京华夏聚龙自动化股份公司二维码自动生成</title>
-		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" media="all and (orientation:landscape)" href="css/landscape.css">
-		<!--横屏-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/qrcode.js"></script>
-	</head>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<title>北京华夏聚龙自动化股份公司二维码自动生成</title>
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" media="all and (orientation:landscape)" href="css/landscape.css"><!--横屏-->
+<script src="js/jquery.min.js"></script>
+<script src="js/qrcode.js"></script>
+</head>
+<body>
+<div class="logo">开票信息</div>
+<ul class="login-block">
+    <li class="lists">
+        <ul>
+            <li><label class="style_label fa fa-tag" style="background:#936be5;"></label><input type="text" value="" placeholder="公司名称" id="companyname" class="txtValue" /></li>
+            <li><label class="style_label fa fa-credit-card" style="background:#ef7c64;"></label><input type="text" value="" placeholder="纳税人识别号" id="identifier" class="txtValue" /></li>
+            <li><label class="style_label fa fa-map-marker" style="background:#fdba5b;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="地址及电话" rows="3" id="address" class="txtValue"></textarea></li>
+        </ul>
+    </li>
+    <li class="lists">
+        <ul>
+            <li><label class="style_label fa fa-bank" style="background:#76d1ff;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="开户行及账号" rows="3" id="bank" class="txtValue"></textarea></li>
+        </ul>
+    </li>
+    <li class="lists">
+        <ul>
+            <li><label class="style_label fa fa-qrcode" style="background:#7bdb6b;"></label><input type="text" id="desc" placeholder="请输入二维码标题" class="txtValue"/></li>
+        </ul>
+    </li>
+</ul>
 
-	<body>
-		<div class="logo">开票信息</div>
-		<ul class="login-block">
-			<li class="lists">
-				<ul>
-					<li><label class="style_label fa fa-tag" style="background:#936be5;"></label><input type="text" value="" placeholder="公司名称" id="companyname" class="txtValue" /></li>
-					<li><label class="style_label fa fa-credit-card" style="background:#fdba5b;"></label><input type="text" value="" placeholder="纳税人识别号" id="identifier" class="txtValue" /></li>
-					<li><label class="style_label fa fa-map-marker" style="background:#76d1ff;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="地址及电话" rows="3" id="address" class="txtValue"></textarea></li>
-				</ul>
-			</li>
-			<li class="lists">
-				<ul>
-					<li><label class="style_label fa fa-bank" style="background:#00d1d8;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="开户行及账号" rows="3" id="bank" class="txtValue"></textarea></li>
-				</ul>
-			</li>
-		</ul>
-		<div id="btn"><button class="button" type="button" onclick="makeCode()">生成二维码</button></div>
-		<div id="result_content">
-			<input id="text" type="text" value="http://hxjl.com.cn" hidden style="width:80%" /><br />
-			<div id="group">
-				<div id="qrcode"></div>
-				<div class="resultbtn">
-					<p style="margin-top:8px;color:#fff;">小提示：<span style="color:#04be02;">长按图片</span>选择保存至手机相册</p>
-					<div class="result_tips">
-						<img src="img/close_03.png" id="close" onclick="closeResult()" />
-					</div>
-				</div>
-			</div>
+<div id="btn"><button class="button" type="button">生成二维码</button></div>
+<div id="result_content">
+    <img id="starImg" class="hide"/>
+    <input id="text" type="text" value="http://hxjl.com.cn" hidden style="width:80%" /><br />
+    <div id="group">
+        <canvas id="main" width="276" height="290" style="border:1px solid #d3d3d3;" ></canvas>
+        <div id="qrcode"  class="hide"></div>
+        <div class="resultbtn">
+            <p style="margin-top:8px;color:#fff;">小提示：<span style="color:#04be02;">长按图片</span>选择保存至手机相册</p>
+            <div class="result_tips">
+                <img src="img/close_03.png" id="close" onclick="closeResult()" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
 
-		</div>
-		<script type="text/javascript">
-			var qrcode = new QRCode(document.getElementById("qrcode"), {});
-
-			function makeCode() {
-				/*document.getElementById("result_content").style.display = "block";*/
-				$("#result_content").show(300);
-				var name = document.getElementById("companyname").value;
-				var identifier = document.getElementById("identifier").value;
-				var address = document.getElementById("address").value;
-				var bank = document.getElementById("bank").value;
-				var elText = document.getElementById("text").value;
-				elText = "1:" + name + "\r\n2:" + identifier + "\r\n3:" + address + "\r\n4:" + bank + "\r\n"
-
-				var elText2 = "公司名称:北京华夏聚龙自动化股份公司\r\n纳税人识别号:911101097481361512\r\n地址：北京市丰台区南四环西路188号" +
-					"（总部基地）十区27号楼电话:010-52256809\r\n开户行及账号:交通银行北京丰台支行110061242018010079265";
-				qrcode.makeCode(elText);
-
-			}
-			function closeResult() {
-				/*document.getElementById("result_content").style.display = "none";*/
-				$("#result_content").hide(300);
+    var qrcode = new QRCode(document.getElementById("qrcode"), {});
+     function browserRedirect() {
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))){
+             $(".button").on('touchstart',function(e){
+                makeCode();
+                event.preventDefault()
+            }).on('touchend ',function(e){
+                hechen();
+                event.preventDefault()
+            });
+        } else {
+            $(".button").on('mousedown',function(e){
+                makeCode();
+            }).on('mouseup ',function(e){
+                hechen();
+            });
+        }
+    };
+    $(function(){
+        $('#companyname').blur(function () {
+            // 获取第一个文本框的值
+            var value = $('#companyname').val();
+            // 设置第二个文本框的值
+            $('#desc').val(value);
+        });
+       browserRedirect();
+    });
+    function makeCode() {
+        $("#result_content").show(300);
+        var name = document.getElementById("companyname").value;
+        var identifier = document.getElementById("identifier").value;
+        var address = document.getElementById("address").value;
+        var bank = document.getElementById("bank").value;
+        var elText = document.getElementById("text").value;
+        elText = "1:" + name + "\r\n2:" + identifier + "\r\n3:" + address + "\r\n4:" + bank + "\r\n";
+        var elText2 = "公司名称:北京华夏聚龙自动化股份公司\r\n纳税人识别号:911101097481361512\r\n地址：北京市丰台区南四环西路188号" +
+                "（总部基地）十区27号楼电话:010-52256809\r\n开户行及账号:交通银行北京丰台支行110061242018010079265";
+        qrcode.makeCode(elText);
+    };
+    function closeResult() {
+        /*document.getElementById("result_content").style.display = "none";*/
+        $("#result_content").hide(300);
 //				location.reload()
-			}
-			$("#text").
-			on("blur", function() {
-				makeCode();
-			}).
-			on("keydown", function(e) {
-				if(e.keyCode == 13) {
-					makeCode();
-				}
-			});
-		</script>
-	</body>
+    }
+    $("#text").
+    on("blur", function() {
+        makeCode();
+    }).
+    on("keydown", function(e) {
+        if(e.keyCode == 13) {
+            makeCode();
+        }
+    });
+    function hechen(){
+        var mainCtx = getCanvasContext('main');
+
+        var maxWidth = mainCtx.width;
+        var maxHeight = mainCtx.height;
+        mainCtx.fillStyle='#fff';
+        mainCtx.fillRect(0,0,276,290);
+        //获取二维码生成图片
+        var codeImg = $("#qrcode").children("img")[0].src;
+        $('#starImg').attr('src',codeImg);
+        var codeImg = new Image();
+        codeImg.src=$('#starImg').attr('src');
+        codeImg.onload=function(){
+            //把二维码图片绘制在这里
+            mainCtx.drawImage(codeImg,10,10);
+        };
+        //读取用户的文本
+        if($('#desc').val()){
+            mainCtx.font = "16px Arial";
+            //设置字体填充颜色
+            mainCtx.fillStyle = "#1c1c1c";
+            mainCtx.lineWidth=1;
+            //从坐标点(50,50)开始绘制文字
+            mainCtx.fillText($('#desc').val(),10,285);
+
+        }
+    }
+    function getCanvasContext(id){
+        return document.getElementById(id).getContext("2d");
+    }
+    function setWidthHeight(img,maxWidth,maxHeight){
+        var imgWidth = img.width;
+        var imgHeight = img.height;
+        if(imgWidth <= maxWidth &&imgHeight <= maxHeight){
+        }
+    }
+</script>
 </html>
