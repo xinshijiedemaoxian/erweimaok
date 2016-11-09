@@ -48,3 +48,40 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {});
 					makeCode();
 				}
 			});
+			//canvas
+			function hechen(){
+        var mainCtx = getCanvasContext('main');
+
+        var maxWidth = mainCtx.width;
+        var maxHeight = mainCtx.height;
+        mainCtx.fillStyle='#fff';
+        mainCtx.fillRect(0,0,276,290);
+        //获取二维码生成图片
+        var codeImg = $("#qrcode").children("img")[0].src;
+        $('#starImg').attr('src',codeImg);
+        var codeImg = new Image();
+        codeImg.src=$('#starImg').attr('src');
+        codeImg.onload=function(){
+            //把二维码图片绘制在这里
+            mainCtx.drawImage(codeImg,10,10);
+        };
+        //读取用户的文本
+        if($('#desc').val()){
+            mainCtx.font = "16px Arial";
+            //设置字体填充颜色
+            mainCtx.fillStyle = "#1c1c1c";
+            mainCtx.lineWidth=1;
+            //从坐标点(50,50)开始绘制文字
+            mainCtx.fillText($('#desc').val(),10,285);
+
+        }
+    }
+    function getCanvasContext(id){
+        return document.getElementById(id).getContext("2d");
+    }
+    function setWidthHeight(img,maxWidth,maxHeight){
+        var imgWidth = img.width;
+        var imgHeight = img.height;
+        if(imgWidth <= maxWidth &&imgHeight <= maxHeight){
+        }
+    }
