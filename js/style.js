@@ -1,5 +1,24 @@
 var qrcode = new QRCode(document.getElementById("qrcode"), {});
-
+		$(function(){
+			browserRedirect()
+		});
+		function browserRedirect() {
+		        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))){
+		             $(".button").on('touchstart',function(e){
+		                $(".button")[0].style.border="5px solid orange";
+		                event.preventDefault()
+		            }).on('touchend ',function(e){
+		                $(".button")[0].style.color="green";
+		                event.preventDefault()
+		            });
+		        } else {
+		            $(".button").on('mousedown',function(e){
+		                makeCode();
+		            }).on('mouseup ',function(e){
+		                $(".button")[0].style.background="blue";
+		            });
+		        }
+		    };
 			function makeCode() {
 				/*document.getElementById("result_content").style.display = "block";*/
 				$("#result_content").show(300);
