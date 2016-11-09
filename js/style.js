@@ -53,20 +53,16 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {});
 			});
 			//canvas
 			function hechen(){
-        var mainCtx = getCanvasContext('main');
-
+         var mainCtx = getCanvasContext('main');
         var maxWidth = mainCtx.width;
         var maxHeight = mainCtx.height;
         mainCtx.fillStyle='#fff';
         mainCtx.fillRect(0,0,276,290);
+        var mainc=document.getElementById('main');
         //获取二维码生成图片
-        var codeImg = $("#qrcode").children("img")[0].src;
-        $('#starImg').attr('src',codeImg);
-        var codeImg = new Image();
-        codeImg.src=$('#starImg').attr('src');
-        codeImg.onload=function(){
-            //把二维码图片绘制在这里
-            mainCtx.drawImage(codeImg,10,10);
+        var codeImg=new  Image();
+        codeImg.src=$("#qrcode").children("img")[0].src;
+        mainCtx.drawImage(codeImg,10,10);
         };
         //读取用户的文本
         if($('#desc').val()){
@@ -76,8 +72,9 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {});
             mainCtx.lineWidth=1;
             //从坐标点(50,50)开始绘制文字
             mainCtx.fillText($('#desc').val(),10,285);
-
         }
+        var imageData =  mainc.toDataURL('image/jpg');
+        document.getElementById('myimage').src = imageData;
     }
     function getCanvasContext(id){
         return document.getElementById(id).getContext("2d");
