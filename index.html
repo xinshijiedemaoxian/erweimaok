@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<meta charset="gb2312">
@@ -29,27 +28,26 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/qrcode.js"></script>
-		<script src="js/style.js"></script>
+		
 	</head>
-
 	<body>
 		<div class="logo">开票信息</div>
 		<ul class="login-block">
 			<li class="lists">
 				<ul>
-					<li><label class="style_label fa fa-tag" style="background-position:0 center;"></label><input type="text" value="" placeholder="公司名称" id="companyname" class="txtValue" /></li>
-					<li><label class="style_label fa fa-credit-card" style="background-position: -47px center;"></label><input type="text" value="" placeholder="纳税人识别号" id="identifier" class="txtValue" /></li>
-					<li><label class="style_label fa fa-map-marker" style="background-position: -94px center;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="地址及电话" rows="3" id="address" class="txtValue"></textarea></li>
+					<li><label class="style_label" style="background-position:0 center;"></label><input type="text" value="" placeholder="公司名称" id="companyname" class="txtValue" /></li>
+					<li><label class="style_label" style="background-position: -47px center;"></label><input type="text" value="" placeholder="纳税人识别号" id="identifier" class="txtValue" /></li>
+					<li><label class="style_label" style="background-position: -94px center;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="地址及电话" rows="3" id="address" class="txtValue"></textarea></li>
 				</ul>
 			</li>
 			<li class="lists">
 				<ul>
-					<li><label class="style_label fa fa-bank" style="background-position: -141px center;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="开户行及账号" rows="3" id="bank" class="txtValue"></textarea></li>
+					<li><label class="style_label" style="background-position: -141px center;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="开户行及账号" rows="3" id="bank" class="txtValue"></textarea></li>
 				</ul>
 			</li>
 			<li class="lists">
 				<ul>
-					<li><label class="style_label fa fa-bank" style="background-position: -188px center;"></label><input type="text" id="desc" value="开票信息" class="txtValue" /></li>
+					<li><label class="style_label" style="background-position: -188px center;"></label><input type="text" id="desc" value="开票信息" class="txtValue" /></li>
 				</ul>
 			</li>
 		</ul>
@@ -68,6 +66,88 @@
 				</div>
 			</div>
 		</div>
-	</body>
+		<script type="text/javascript">
+    	var qrcode = new QRCode(document.getElementById("qrcode"), {});
+		function browserRedirect() {
+		        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))){
+		             $(".button").on('touchstart',function(e){
+		                hechen();
+		                event.preventDefault()
+		            }).on('touchend ',function(e){
+		                makeCode();
+		                event.preventDefault()
+		            });
+		        } else {
+		            $(".button").on('mousedown',function(e){
+		       			makeCode();
+		            }).on('mouseup ',function(e){
+		                 hechen();
+		            });
+		        }
+		    };
+    $(function(){
+        $("#desc").focus(function(){
+            $("#desc").val("");
+        });
+        browserRedirect();
+    });
+    function makeCode() {
+        $("#result_content").show(300);
+        var name = document.getElementById("companyname").value;
+        var identifier = document.getElementById("identifier").value;
+        var address = document.getElementById("address").value;
+        var bank = document.getElementById("bank").value;
+        var elText = document.getElementById("text").value;
+        elText = "1:" + name + "\r\n2:" + identifier + "\r\n3:" + address + "\r\n4:" + bank + "\r\n";
+        var elText2 = "公司名称:北京华夏聚龙自动化股份公司\r\n纳税人识别号:911101097481361512\r\n地址：北京市丰台区南四环西路188号" +
+                "（总部基地）十区27号楼电话:010-52256809\r\n开户行及账号:交通银行北京丰台支行110061242018010079265";
+        qrcode.makeCode(elText);
+    };
+    function closeResult() {
+        $("#result_content").hide(300);
+    }
+    $("#text").
+    on("blur", function() {
+        makeCode();
+    }).
+    on("keydown", function(e) {
+        if(e.keyCode == 13) {
+            makeCode();
+        }
+    });
+    function hechen(){
+        var mainCtx = getCanvasContext('main');
+        var maxWidth = mainCtx.width;
+        var maxHeight = mainCtx.height;
+        mainCtx.fillStyle='#fff';
+        mainCtx.fillRect(0,0,276,290);
+        var mainc=document.getElementById('main');
+        //获取二维码生成图片
+        var codeImg=new  Image();
+        codeImg.src=$("#qrcode").children("img")[0].src;
+        mainCtx.drawImage(codeImg,10,10);
+        if($('#desc').val()) {
+            mainCtx.font = "16px Arial";
+            //设置字体填充颜色
+            mainCtx.fillStyle = "#1c1c1c";
+            mainCtx.lineWidth = 1;
+            //从坐标点(50,50)开始绘制文字
+            mainCtx.fillText($('#desc').val(), 10, 285);
+        }
+        var imageData =  mainc.toDataURL('image/jpg');
+        document.getElementById('myimage').src = imageData;
+    }
 
+    function getCanvasContext(id){
+        return document.getElementById(id).getContext("2d");
+    }
+    function setWidthHeight(img,maxWidth,maxHeight){
+        var imgWidth = img.width;
+        var imgHeight = img.height;
+        if(imgWidth <= maxWidth &&imgHeight <= maxHeight){
+        }
+    }
+
+</script>
+	</body>
 </html>

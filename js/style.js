@@ -73,8 +73,7 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {});
             //从坐标点(50,50)开始绘制文字
             mainCtx.fillText($('#desc').val(),10,285);
         }
-        var imageData =  mainc.toDataURL('image/jpg');
-        document.getElementById('myimage').src = imageData;
+        
     }
     function getCanvasContext(id){
         return document.getElementById(id).getContext("2d");
