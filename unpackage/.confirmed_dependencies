@@ -7,7 +7,8 @@
 			"css/style.css",
 			"img/close_03.png",
 			"fonts/fontawesome-webfont.woff",
-			"css/landscape.css"
+			"css/landscape.css",
+			"js/style.js"
 		]
 	}
 }

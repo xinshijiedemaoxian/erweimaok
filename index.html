@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<meta charset="gb2312">
@@ -27,38 +26,38 @@
 		<title>北京华夏聚龙自动化股份公司二维码自动生成</title>
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/qrcode.js"></script>
 		<script src="js/style.js"></script>
 	</head>
+
 	<body>
 		<div class="logo">开票信息</div>
 		<ul class="login-block">
 			<li class="lists">
 				<ul>
-					<li><label class="style_label fa fa-tag" style="background:#936be5;"></label><input type="text" value="" placeholder="公司名称" id="companyname" class="txtValue" /></li>
-					<li><label class="style_label fa fa-credit-card" style="background:#fdba5b;"></label><input type="text" value="" placeholder="纳税人识别号" id="identifier" class="txtValue" /></li>
-					<li><label class="style_label fa fa-map-marker" style="background:#76d1ff;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="地址及电话" rows="3" id="address" class="txtValue"></textarea></li>
+					<li><label class="style_label fa fa-tag" style="background-position:0 center;"></label><input type="text" value="" placeholder="公司名称" id="companyname" class="txtValue" /></li>
+					<li><label class="style_label fa fa-credit-card" style="background-position: -47px center;"></label><input type="text" value="" placeholder="纳税人识别号" id="identifier" class="txtValue" /></li>
+					<li><label class="style_label fa fa-map-marker" style="background-position: -94px center;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="地址及电话" rows="3" id="address" class="txtValue"></textarea></li>
 				</ul>
 			</li>
 			<li class="lists">
 				<ul>
-					<li><label class="style_label fa fa-bank" style="background:#00d1d8;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="开户行及账号" rows="3" id="bank" class="txtValue"></textarea></li>
+					<li><label class="style_label fa fa-bank" style="background-position: -141px center;"></label><textarea style="vertical-align:top;resize: none;" value="" placeholder="开户行及账号" rows="3" id="bank" class="txtValue"></textarea></li>
 				</ul>
 			</li>
 			<li class="lists">
 				<ul>
-					<li><label class="style_label fa fa-bank" style="background:#00d1d8;"></label><input type="text" id="desc" value="开票信息" class="txtValue" /></li>
+					<li><label class="style_label fa fa-bank" style="background-position: -188px center;"></label><input type="text" id="desc" value="开票信息" class="txtValue" /></li>
 				</ul>
 			</li>
 		</ul>
 		<div id="btn"><button class="button" type="button">生成二维码</button></div>
 		<div id="result_content">
-			<img id="starImg" class="hide"/>
+			<img id="starImg" class="hide" />
 			<input id="text" type="text" value="http://hxjl.com.cn" hidden style="width:80%" /><br />
 			<div id="group">
-				<canvas id="main" width="276" height="290" style="border:1px solid #d3d3d3;" ></canvas>
+				<canvas id="main" width="276" height="290" style="border:1px solid #d3d3d3;"></canvas>
 				<div id="qrcode" class="hide"></div>
 				<div class="resultbtn">
 					<p style="margin-top:8px;color:#fff;">小提示：<span style="color:#04be02;">长按图片</span>选择保存至手机相册</p>

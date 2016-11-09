@@ -1,8 +1,8 @@
 var qrcode = new QRCode(document.getElementById("qrcode"), {});
 		$(function(){
 			$("#desc").focus(function(){
-            $("#desc").val("");
-        });
+            	$("#desc").val("");
+        	});
 			browserRedirect();
 		});
 		function browserRedirect() {
