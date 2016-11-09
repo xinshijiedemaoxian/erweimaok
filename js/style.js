@@ -15,7 +15,7 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {});
 		            $(".button").on('mousedown',function(e){
 		                makeCode();
 		            }).on('mouseup ',function(e){
-		                $(".button")[0].style.background="blue";
+		                alert("$$$$")
 		            });
 		        }
 		    };
