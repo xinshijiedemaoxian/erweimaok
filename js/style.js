@@ -16,9 +16,9 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {});
 		            });
 		        } else {
 		            $(".button").on('mousedown',function(e){
-		       			hechen();
+		       			makeCode();
 		            }).on('mouseup ',function(e){
-		                 makeCode();
+		                 hechen();
 		            });
 		        }
 		    };
